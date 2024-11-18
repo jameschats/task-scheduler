@@ -129,13 +129,11 @@ const readReminders = () => {
           return parsedData.filter(reminder => !reminder.completed);
       } else {
           console.error("Parsed data is not an array");
-          //throw new Error("Invalid JSON format, expected an array");
           return {};
       }
   } else {
       console.error("File is empty");
       return {};
-      //throw new Error("No content in the file to parse");
   }
   
   } catch (error) {
