@@ -1,6 +1,6 @@
 First install these
 --------------------------
-npm install express cors node-cron
+npm install express cors node-cron \n
 npm install -g http-server
 
 to run backend
