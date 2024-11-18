@@ -121,9 +121,22 @@ app.patch("/tasks/:id/complete", (req, res) => {
 const readReminders = () => {
   try {
     const data = fs.readFileSync(filePath, "utf8");
-   console.log(data);   
-    parsedData = JSON.parse(data);
-    return parsedData.filter(reminder => !reminder.completed);
+    console.log(data);       
+    // Check if data is not empty
+    if (data.trim()) { 
+      const parsedData = JSON.parse(data); // Parse the JSON
+      if (Array.isArray(parsedData)) {
+          return parsedData.filter(reminder => !reminder.completed);
+      } else {
+          console.error("Parsed data is not an array");
+          //throw new Error("Invalid JSON format, expected an array");
+          return {};
+      }
+  } else {
+      console.error("File is empty");
+      return {};
+      //throw new Error("No content in the file to parse");
+  }
   
   } catch (error) {
     console.error("Error reading reminders:", error);
